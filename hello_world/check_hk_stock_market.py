@@ -1,8 +1,8 @@
 import akshare as ak
 
 def check_hk_stock_market():
-    observe_list = ('00700', '09988', '09618', '03690', '09999', '00300')
-    observe_name = ('腾讯', '阿里', '京东', '美团', '网易', '美的')
+    observe_list = ('00700', '09988', '09618', '03690', '09999', '00300', '02800')
+    observe_name = ('腾讯', '阿里', '京东', '美团', '网易', '美的', '盈富')
     alerts = []  # List to store alert messages
     results = []  # List to store results as (ticker, closing price, change percentage)
     
@@ -20,9 +20,20 @@ def check_hk_stock_market():
 
         # Calculate change percentage
         change_percentage = ((latest_closing_px - previous_closing_px) / previous_closing_px) * 100
-        # Store result as a tuple
-        results.append((observe_name[index], latest_closing_px, change_percentage))
+        chg_pct_so_far = (latest_closing_px - highest_px) / highest_px * 100
 
+        # Store result as a tuple
+        results.append((observe_name[index], latest_closing_px, change_percentage, chg_pct_so_far))
+        prompt = ""
+        if chg_pct_so_far <= -10:
+            if chg_pct_so_far <= -20:
+                prompt = "SEVERELY ALERT: "
+            else:
+                prompt = "ALERT: "
+            alert_message = prompt + f"{observe_name[index]} ({latest_closing_px}, {change_percentage:.2f}%, {chg_pct_so_far:.2f}%) declined more than {chg_pct_so_far:.2f}% from the highest price: {highest_px:.2f}."
+            alerts.append(alert_message)  # Store the alert message
+
+        """
         if latest_closing_px <= highest_px * 0.2:
             alert_message = f"SEVERELY ALERT: {observe_name[index]} ({latest_closing_px}, {change_percentage:.2f}%) declined more than 80% from the highest price: {highest_px:.2f}."
             alerts.append(alert_message)  # Store the alert message
@@ -47,16 +58,16 @@ def check_hk_stock_market():
         elif latest_closing_px <= highest_px * 0.9:
             alert_message = f"ALERT: {observe_name[index]} ({latest_closing_px},{change_percentage:.2f}%) declined more than 10% from the highest price: {highest_px:.2f}."
             alerts.append(alert_message)  # Store the alert message
-            
+        """
             
 
     # Sort results by change percentage in descending order
     results.sort(key=lambda x: x[2], reverse=True)
     # Print sorted results
     ret = []
-    for ticker, closing_px, change_percentage in results:
+    for ticker, closing_px, change_percentage,chg_pct_so_far in results:
         #ret.append(ticker + "(" + str(closing_px) + "," + str(change_percentage) + "%)")
-        ret.append(f"{ticker}({closing_px:.2f},{change_percentage:.2f}%)")
+        ret.append(f"{ticker}({closing_px:.2f},{change_percentage:.2f}%, {chg_pct_so_far:.2f}%)")
 
     return "\n".join(alerts), ",".join(ret)  # Return both alerts and sorted list of tuples
 
@@ -64,8 +75,8 @@ if __name__ == "__main__":
     alerts, results = check_hk_stock_market()
     
     # Print alert messages
-    for message in alerts:
-        print(message)
-    
+    #for message in alerts:
+    #    print(message)
+    print(alerts)
       # Print each result
     print(results)

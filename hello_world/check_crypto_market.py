@@ -18,7 +18,7 @@ def check_crypto_market():
     params = {
         'access_key': api_key,  # Your API access key
         'target': 'USD',         # Target currency (optional)
-        'symbols': 'BTC,ETH,LTC' # Specify which cryptocurrencies to retrieve (optional)
+        'symbols': 'BTC,TRUMP,ETH,LTC' # Specify which cryptocurrencies to retrieve (optional)
     }
 
     try:
