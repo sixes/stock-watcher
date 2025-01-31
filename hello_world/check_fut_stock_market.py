@@ -3,7 +3,7 @@ from datetime import date, datetime, timedelta
 
 def check_fut_stock_market():
     ret = ''
-    start_date = date.today() - timedelta(days=3)
+    start_date = date.today() - timedelta(days=10)
     ticker ='AG0'
     daily = ak. futures_main_sina(symbol=ticker, start_date=start_date, end_date=datetime.today())
     #print(daily.tail(5))

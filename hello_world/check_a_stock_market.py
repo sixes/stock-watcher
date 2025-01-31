@@ -3,7 +3,7 @@ from datetime import date, datetime, timedelta
 
 def check_a_stock_market():
     ret = ''
-    start_date = date.today() - timedelta(days=3)
+    start_date = date.today() - timedelta(days=10)
     ticker ='000001'
     daily = ak.index_zh_a_hist(symbol=ticker, period='daily', start_date=start_date, end_date=datetime.today())
     #print(daily.tail(5))
