@@ -47,3 +47,4 @@ def check_crypto_market():
 
 if __name__ == "__main__":
     check_crypto_market()
+
