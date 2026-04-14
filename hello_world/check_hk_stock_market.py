@@ -8,9 +8,9 @@ logger.setLevel(level=logging.INFO)
 
 def check_hk_stock_market():
     observe_list = ('00700', '09988', '09618', '03690', '09999', '00300', '02800', '03188', '03074', '02840', '02823', '03110',
-    '03042', '03195')
+    '03042', '03195', '00100', '02513', '00001', '01113', '00013', '01038', '00006')
     observe_name = ('腾讯', '阿里', '京东', '美团', '网易', '美的', '盈富', '沪深300', 'MS台湾', 'SPDR金', 'A50', '高股息',
-    '比特币', 'SP500')
+    '比特币', 'SP500', 'MINIMAX', '智谱', '长和', '长实', '和黄', '长江', '电能')
     alerts = []  # List to store alert messages
     results = []  # List to store results as (ticker, name, closing price, change percentage, chg_pct_so_far)
     current_date = datetime.now().strftime('%Y-%m-%d')
@@ -22,6 +22,7 @@ def check_hk_stock_market():
         latest_day_data = daily.tail(1)
         latest_closing_px = latest_day_data.iat[0, 4]  # Latest closing price
         previous_closing_px = daily.iloc[-2].iat[4]    # Previous closing price
+        logger.info(f"latest closing px: {latest_closing_px} ticker: {ticker}")
 
         highest_day_data = daily[daily.high == daily.high.max()]
         highest_px = highest_day_data.iat[0, 2]

@@ -12,10 +12,11 @@ TICKER_TO_NAME = {
     'META': '脸书', 'TSLA': '特斯拉', 'COST': '好市多', 'GOOGL': '谷歌A', 'NFLX': '奈飞',
     'GOOG': '谷歌C', 'WMT': '沃尔玛', 'ASML': '阿斯麦', 'TSM': '台积电', 'MAGS': '麦格斯',
     'QQQ': '纳指ETF', 'TQQQ': '纳指三倍', 'VOO': '标普ETF', 'SPY': '标普500', 'MGK': '成长ETF',
-    'SPLG': '标普低价', 'FNGB': '金融ETF', 'TEXL': '科技三倍', 'MSFU': '微软三倍',
+    'SPLG': '标普低价', 'FNGB': '金融ETF', 'TEXL': '科技三倍', 'MSFU': '微软 2X',
     'TSLL': '特斯拉三倍', 'NVDU': '英伟达三倍', 'QULL': '纳指三倍', 'SPXL': '标普三倍',
     'ROM': '科技双倍', 'QLD': '纳指双倍', 'SSO': '标普双倍', 'UPRO': '标普三倍',
-    'TECL': '科技三倍', 'SOXL': '半导体三倍'
+    'TECL': '科技三倍', 'SOXL': '半导体三倍','QQQU':'QQQ 2X','UGL':'Gold 2X','GDXU': 'Gold 3X',
+    'DFEN': 'Def 3X', 'FNGU': 'FANG+ 3X'
 }
 
 def check_us_stock_market():
@@ -24,7 +25,7 @@ def check_us_stock_market():
     'AAPL', 'NVDA', 'MSFT', 'AMZN', 'AVGO', 'META', 'TSLA', 'COST', 'GOOGL', 'NFLX',
     'GOOG', 'WMT', 'ASML', 'TSM', 'MAGS', 'QQQ', 'TQQQ', 'VOO', 'SPY', 'MGK',
     'SPLG', 'FNGB', 'TEXL', 'MSFU', 'TSLL', 'NVDU', 'QULL', 'SPXL', 'ROM', 'QLD',
-    'SSO', 'UPRO', 'TECL', 'SOXL')
+    'SSO', 'UPRO', 'TECL', 'SOXL', 'QQQU', 'UGL', 'GDXU', 'DFEN', 'FNGU')
     i = 0
     alerts = []  # List to store alert messages
     results = []  # List to store results as (ticker, closing price, change percentage, chg_pct_so_far)
